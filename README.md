@@ -1,6 +1,5 @@
-<p align="center">
-  <img src="difeecult-readme-arquivos/banner.png" alt="DifeeCult ERP" width="100%">
-</p>
+<p align="center"><img src="difeecult-readme-arquivos/fx/hero.svg" alt="DifeeCult ERP: conta-giros com o logo e fogo" width="100%"></p>
+<p align="center"><img src="difeecult-readme-arquivos/fx/digitando.svg" alt="O que o sistema faz" width="100%"></p>
 
 <p align="center">
   <a href="https://callmekaue.github.io/modelagem-difeecult/"><img alt="Demonstração online" src="https://img.shields.io/badge/demonstra%C3%A7%C3%A3o-online-D7192A?style=for-the-badge"></a>
@@ -27,9 +26,9 @@
   tudo em um banco de dados único e modelado do zero.
 </p>
 
----
+<p align="center"><img src="difeecult-readme-arquivos/fx/divisor.svg" alt="" width="100%"></p>
 
-## Teste agora
+<h2 align="center">Teste agora</h2>
 
 <table>
 <tr>
@@ -50,31 +49,23 @@ A demonstração roda o servidor do ERP **dentro do seu navegador**, com o banco
 </tr>
 </table>
 
----
+<p align="center"><img src="difeecult-readme-arquivos/fx/divisor.svg" alt="" width="100%"></p>
 
-## Sumário
+<h2 align="center">Sumário</h2>
 
-1. [A empresa](#1-a-empresa)
-2. [As dores](#2-as-dores)
-3. [A solução](#3-a-solução)
-4. [O sistema em movimento](#4-o-sistema-em-movimento)
-5. [Módulos e telas](#5-módulos-e-telas)
-6. [Modelagem de dados: visão geral](#6-modelagem-de-dados-visão-geral)
-7. [Modelagem por domínio](#7-modelagem-por-domínio)
-8. [Regras de integridade](#8-regras-de-integridade)
-9. [Decisões de modelagem](#9-decisões-de-modelagem)
-10. [Dicionário de dados (34 tabelas)](#10-dicionário-de-dados)
-11. [Arquitetura](#11-arquitetura)
-12. [Permissões e perfis](#12-permissões-e-perfis)
-13. [Como rodar](#13-como-rodar)
-14. [Como funciona a demonstração online](#14-como-funciona-a-demonstração-online)
-15. [Estrutura do projeto](#15-estrutura-do-projeto)
-16. [Testes](#16-testes)
-17. [Próximos passos](#17-próximos-passos)
+<table align="center">
+<tr><td><a href="#s1"><b>01</b> &nbsp;A empresa</a><br><sub>Moda feita para quem vive o carro</sub></td><td><a href="#s2"><b>02</b> &nbsp;As dores</a><br><sub>O que travava a operação antes do ERP</sub></td><td><a href="#s3"><b>03</b> &nbsp;A solução</a><br><sub>Um sistema, um banco, uma operação</sub></td></tr>
+<tr><td><a href="#s4"><b>04</b> &nbsp;Em movimento</a><br><sub>O sistema funcionando de verdade</sub></td><td><a href="#s5"><b>05</b> &nbsp;Módulos e telas</a><br><sub>Comercial, financeiro, cadastros e administrativo</sub></td><td><a href="#s6"><b>06</b> &nbsp;Modelagem</a><br><sub>Visão geral: 34 tabelas em 7 domínios</sub></td></tr>
+<tr><td><a href="#s7"><b>07</b> &nbsp;Por domínio</a><br><sub>Cada recorte do DER com as regras de negócio</sub></td><td><a href="#s8"><b>08</b> &nbsp;Integridade</a><br><sub>PK, FK, UNIQUE, CHECK e transações</sub></td><td><a href="#s9"><b>09</b> &nbsp;Decisões</a><br><sub>Por que o modelo é do jeito que é</sub></td></tr>
+<tr><td><a href="#s10"><b>10</b> &nbsp;Dicionário de dados</a><br><sub>As 34 tabelas e 328 colunas, uma a uma</sub></td><td><a href="#s11"><b>11</b> &nbsp;Arquitetura</a><br><sub>Navegador, API Express e banco</sub></td><td><a href="#s12"><b>12</b> &nbsp;Permissões</a><br><sub>Quem pode ver e quem pode editar</sub></td></tr>
+<tr><td><a href="#s13"><b>13</b> &nbsp;Como rodar</a><br><sub>Do npm install ao sistema no ar</sub></td><td><a href="#s14"><b>14</b> &nbsp;Demo online</a><br><sub>O servidor rodando dentro do navegador</sub></td><td><a href="#s15"><b>15</b> &nbsp;Estrutura</a><br><sub>Os arquivos do projeto</sub></td></tr>
+<tr><td><a href="#s16"><b>16</b> &nbsp;Testes</a><br><sub>214 testes automatizados</sub></td><td><a href="#s17"><b>17</b> &nbsp;Próximos passos</a><br><sub>Para onde o DifeeCult ERP pode acelerar</sub></td></tr>
+</table>
 
----
+<p align="center"><img src="difeecult-readme-arquivos/fx/divisor.svg" alt="" width="100%"></p>
 
-## 1. A empresa
+<a name="s1"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-01.svg" alt="1. A empresa" width="100%"></p>
 
 <img align="right" src="difeecult-readme-arquivos/logo-preto.png#gh-light-mode-only" alt="DifeeCult" width="220">
 <img align="right" src="difeecult-readme-arquivos/logo-branco.png#gh-dark-mode-only" alt="DifeeCult" width="220">
@@ -90,7 +81,8 @@ Como cada evento é venda, vitrine e logística ao mesmo tempo, **estoque, venda
 
 <br clear="right">
 
-## 2. As dores
+<a name="s2"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-02.svg" alt="2. As dores" width="100%"></p>
 
 | Área | Como era antes do ERP |
 |---|---|
@@ -102,7 +94,8 @@ Como cada evento é venda, vitrine e logística ao mesmo tempo, **estoque, venda
 | **Produção** | Pouco controle de fornecedores e do custo real de cada peça. |
 | **Processos** | Planilhas + anotações + WhatsApp = retrabalho e números que não batem. |
 
-## 3. A solução
+<a name="s3"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-03.svg" alt="3. A solução" width="100%"></p>
 
 Um **ERP próprio**, com **um único banco de dados** que integra todos os setores:
 
@@ -132,9 +125,10 @@ flowchart LR
 | Pessoal e empresa misturados | Caixa, contas e fornecedores num só lugar | `caixa`, `contas`, `contas_receber` |
 | Evento sem conta fechada | Vendas e saídas ligadas ao evento | `eventos` ← `vendas.evento_id` |
 
----
+<p align="center"><img src="difeecult-readme-arquivos/fx/divisor.svg" alt="" width="100%"></p>
 
-## 4. O sistema em movimento
+<a name="s4"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-04.svg" alt="4. O sistema em movimento" width="100%"></p>
 
 <h3>Venda no PDV: produto, variação, pagamento e confirmação</h3>
 <p align="center"><img src="difeecult-readme-arquivos/gifs/venda.gif" alt="Venda no PDV" width="100%"></p>
@@ -155,9 +149,10 @@ No evento, o PDV roda no celular: barra inferior com Início, Vender, Caixa e Es
 </tr>
 </table>
 
----
+<p align="center"><img src="difeecult-readme-arquivos/fx/divisor.svg" alt="" width="100%"></p>
 
-## 5. Módulos e telas
+<a name="s5"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-05.svg" alt="5. Módulos e telas" width="100%"></p>
 
 ### Comercial
 
@@ -223,21 +218,12 @@ No evento, o PDV roda no celular: barra inferior com Início, Vender, Caixa e Es
 </tr>
 </table>
 
----
+<p align="center"><img src="difeecult-readme-arquivos/fx/divisor.svg" alt="" width="100%"></p>
 
-## 6. Modelagem de dados: visão geral
+<a name="s6"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-06.svg" alt="6. Modelagem de dados: visão geral" width="100%"></p>
 
-<table>
-<tr>
-<td align="center"><h2>34</h2>tabelas</td>
-<td align="center"><h2>328</h2>colunas</td>
-<td align="center"><h2>46</h2>chaves estrangeiras</td>
-<td align="center"><h2>64</h2>regras CHECK</td>
-<td align="center"><h2>24</h2>restrições UNIQUE</td>
-<td align="center"><h2>5</h2>PKs compostas</td>
-<td align="center"><h2>7</h2>domínios</td>
-</tr>
-</table>
+<p align="center"><img src="difeecult-readme-arquivos/fx/placar.svg" alt="34 tabelas, 328 colunas, 46 chaves estrangeiras, 64 CHECKs, 24 UNIQUE, 5 PKs compostas, 7 domínios" width="100%"></p>
 
 ### Do requisito ao banco
 
@@ -724,9 +710,10 @@ erDiagram
     usuarios_erp |o--o{ parametros : "atualizado_por"
 ```
 
----
+<p align="center"><img src="difeecult-readme-arquivos/fx/divisor.svg" alt="" width="100%"></p>
 
-## 7. Modelagem por domínio
+<a name="s7"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-07.svg" alt="7. Modelagem por domínio" width="100%"></p>
 
 Em cada domínio: o recorte do DER, as regras de negócio que o modelo garante e, para abrir, o diagrama completo em Mermaid (tabelas de outros domínios aparecem só com a chave).
 
@@ -1339,9 +1326,10 @@ erDiagram
 </details>
 
 
----
+<p align="center"><img src="difeecult-readme-arquivos/fx/divisor.svg" alt="" width="100%"></p>
 
-## 8. Regras de integridade
+<a name="s8"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-08.svg" alt="8. Regras de integridade" width="100%"></p>
 
 | Recurso | Quantidade | Exemplos no DifeeCult |
 |---|:-:|---|
@@ -1353,9 +1341,10 @@ erDiagram
 
 **A PK identifica a linha; o UNIQUE garante que o conteúdo não se repete.** Por isso descrições (de conta, de custo, de evento) **não** são UNIQUE: repetir um texto explicativo não é erro. Só é UNIQUE o que identifica algo no mundo real.
 
----
+<p align="center"><img src="difeecult-readme-arquivos/fx/divisor.svg" alt="" width="100%"></p>
 
-## 9. Decisões de modelagem
+<a name="s9"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-09.svg" alt="9. Decisões de modelagem" width="100%"></p>
 
 | Decisão | Por quê |
 |---|---|
@@ -1372,9 +1361,10 @@ erDiagram
 | **`parametros` em chave e valor** | Regras da loja mudam sem alterar a estrutura do banco. |
 | **`empresa` com linha única** | CHECK `id = 1`: um só cabeçalho para holerites e recibos. |
 
----
+<p align="center"><img src="difeecult-readme-arquivos/fx/divisor.svg" alt="" width="100%"></p>
 
-## 10. Dicionário de dados
+<a name="s10"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-10.svg" alt="10. Dicionário de dados" width="100%"></p>
 
 Todas as 34 tabelas e 328 colunas, geradas do `banco_mysql.sql`. Clique em uma tabela para abrir.
 
@@ -1993,9 +1983,10 @@ Todas as 34 tabelas e 328 colunas, geradas do `banco_mysql.sql`. Clique em uma t
 </details>
 
 
----
+<p align="center"><img src="difeecult-readme-arquivos/fx/divisor.svg" alt="" width="100%"></p>
 
-## 11. Arquitetura
+<a name="s11"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-11.svg" alt="11. Arquitetura" width="100%"></p>
 
 ```mermaid
 flowchart TB
@@ -2022,7 +2013,8 @@ flowchart TB
 - **Hospedagem:** pronto para Vercel (`api/index.js`) com Supabase.
 - **Cálculos compartilhados:** `precificacao.js` roda no servidor e no navegador, então a prévia na tela e o valor gravado sempre batem.
 
-## 12. Permissões e perfis
+<a name="s12"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-12.svg" alt="12. Permissões e perfis" width="100%"></p>
 
 Cada usuário tem, para cada tela, **sem acesso**, **ver** ou **ver e editar** (`usuario_permissao`). O servidor confere a permissão em todas as rotas; esconder um botão na tela não basta.
 
@@ -2037,7 +2029,8 @@ Cada usuário tem, para cada tela, **sem acesso**, **ver** ou **ver e editar** (
 
 A permissão **Custos e formação de preço** é separada do estoque: o vendedor consegue vender sem ver o custo e a margem de cada peça.
 
-## 13. Como rodar
+<a name="s13"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-13.svg" alt="13. Como rodar" width="100%"></p>
 
 **Requisitos:** Node.js 18 ou mais novo.
 
@@ -2053,7 +2046,8 @@ O servidor cria ou atualiza o `banco.sqlite` sozinho na primeira vez. Para usar 
 mysql -u root -p < banco_mysql.sql
 ```
 
-## 14. Como funciona a demonstração online
+<a name="s14"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-14.svg" alt="14. Como funciona a demonstração online" width="100%"></p>
 
 O link deste repositório é um site estático no **GitHub Pages**, sem servidor. Para o sistema funcionar mesmo assim:
 
@@ -2062,7 +2056,8 @@ O link deste repositório é um site estático no **GitHub Pages**, sem servidor
 3. As chamadas a `/api` não saem da página: são atendidas por esse servidor local, com as **mesmas regras** do sistema real.
 4. Depois de cada alteração, o banco é salvo no **localStorage** do navegador. Cada pessoa tem a própria cópia; **Restaurar dados** volta ao original.
 
-## 15. Estrutura do projeto
+<a name="s15"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-15.svg" alt="15. Estrutura do projeto" width="100%"></p>
 
 ```text
 Sistema completo (Difeecult.zip)
@@ -2087,7 +2082,8 @@ Este repositório (demonstração no GitHub Pages)
 └── difeecult-readme-arquivos/                 imagens e GIFs deste README
 ```
 
-## 16. Testes
+<a name="s16"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-16.svg" alt="16. Testes" width="100%"></p>
 
 ```bash
 npm test
@@ -2095,7 +2091,8 @@ npm test
 
 **214 testes automatizados** (`node --test`) cobrem vendas, brinde, cancelamento, pagamento diversificado, estoque e variações, categorias e tipos de evento, formação de preço, holerite CLT e PJ, contas, permissões por tela e relatórios. Também foram executados contra o PostgreSQL.
 
-## 17. Próximos passos
+<a name="s17"></a>
+<p align="center"><img src="difeecult-readme-arquivos/fx/secao-17.svg" alt="17. Próximos passos" width="100%"></p>
 
 - **PDV offline nos eventos:** vender sem internet e sincronizar depois.
 - **Maquininha e NFC-e integradas:** pagamento confirmado direto e nota fiscal na venda.
@@ -2104,10 +2101,7 @@ npm test
 - **Fornecedor na ficha de custo:** o aumento do tecido já recalcula o preço.
 - **Conferência por QR code:** etiqueta com QR em cada peça para conferir o estoque pelo celular.
 
----
+<p align="center"><img src="difeecult-readme-arquivos/fx/divisor.svg" alt="" width="100%"></p>
 
-<p align="center">
-  <img src="difeecult-readme-arquivos/logo-preto.png#gh-light-mode-only" alt="DifeeCult" width="160">
-  <img src="difeecult-readme-arquivos/logo-branco.png#gh-dark-mode-only" alt="DifeeCult" width="160"><br>
-  <sub>Projeto acadêmico de Engenharia de Software · UNICID · Modelagem de Banco de Dados</sub>
-</p>
+<p align="center"><img src="difeecult-readme-arquivos/fx/rodape.svg" alt="DifeeCult: feito para quem vive o carro" width="100%"></p>
+<p align="center"><sub>Projeto acadêmico de Engenharia de Software · UNICID · Modelagem de Banco de Dados</sub></p>
