@@ -229,7 +229,7 @@ No evento, o PDV roda no celular: barra inferior com Início, Vender, Caixa e Es
 
 ```mermaid
 flowchart LR
-    A["1. Requisitos<br/>dores e regras do negócio"] --> B["2. Modelo conceitual<br/>entidades e relacionamentos"]
+    A["1. Requisitos<br/>dores e regras do negócio"] --> B["2. Modelo conceitual<br/>MER em notação de Chen"]
     B --> C["3. Modelo lógico<br/>tabelas, PK/FK, 3FN, restrições"]
     C --> D["4. Banco físico<br/>SQLite · PostgreSQL · MySQL"]
     style A fill:#D7192A,color:#fff,stroke:#D7192A
@@ -249,6 +249,31 @@ O mesmo modelo existe em três bancos: **SQLite** (uso local, criado pelo própr
 | **Fornecedores e financeiro** (6) | `fornecedor` `fornecedor_telefone` `fornecedor_email` `contas` `contas_fixas` `contas_receber` | Quem fornece, o que pagar e o que receber |
 | **Pessoas e folha** (6) | `funcionario` `funcionario_telefone` `funcionario_email` `holerite` `empresa` `clt_tabela` | Equipe, holerites e recibos |
 | **Acesso e sistema** (4) | `usuarios_erp` `usuario_permissao` `log_atividade` `parametros` | Quem entra, o que pode fazer e o que foi feito |
+
+### MER conceitual (notação de Chen)
+
+Antes das tabelas vem o modelo conceitual: o que existe no negócio e como as coisas se ligam, sem pensar ainda em chave estrangeira. São **28 entidades** e **33 relacionamentos**, desenhados na notação de Chen com cardinalidade (mín,máx). Clique para abrir em tamanho real ([versão SVG](difeecult-readme-arquivos/mer/mer-geral.svg)).
+
+<p align="center"><img src="difeecult-readme-arquivos/mer/mer-legenda.png" alt="Legenda da notação de Chen" width="90%"></p>
+
+<p align="center">
+  <a href="difeecult-readme-arquivos/mer/mer-geral.png"><img src="difeecult-readme-arquivos/mer/mer-geral.png" alt="MER completo do DifeeCult ERP em notação de Chen" width="100%"></a>
+</p>
+
+<sub>No MER geral cada entidade aparece só com o identificador, para caber tudo. Os atributos completos estão nos MERs de cada domínio, na seção 7.</sub>
+
+**Como se lê a cardinalidade.** O par (mín,máx) fica do lado da entidade e diz quantas ocorrências dela se ligam a **uma** ocorrência da outra ponta. Exemplo: `Venda (0,N) — realiza — (0,1) Usuário` quer dizer que um usuário realiza nenhuma ou muitas vendas, e cada venda é feita por no máximo um usuário.
+
+**Do conceitual (28 entidades) ao lógico (34 tabelas).** As 6 tabelas a mais não são entidades novas, são consequência das regras de mapeamento:
+
+| No MER (Chen) | Vira no banco | Por quê |
+|---|---|---|
+| Atributo multivalorado **telefones** e **e-mails** de Fornecedor | `fornecedor_telefone`, `fornecedor_email` | 1FN: uma coluna não guarda lista, então cada valor vira uma linha |
+| Atributo multivalorado **telefones** e **e-mails** de Funcionário | `funcionario_telefone`, `funcionario_email` | Mesma regra |
+| Atributo multivalorado **permissões** de Usuário | `usuario_permissao` (PK composta usuário + tela) | Cada tela liberada é uma linha, com o nível de acesso |
+| Relacionamento N:N **contém** (Venda × Produto) com atributos tipo, quantidade e preço unitário | `venda_item` | N:N sempre vira tabela associativa, e os atributos do relacionamento vão junto |
+| Entidades fracas **Item de custo** e **Histórico de pagamento** | `ficha_custo_item`, `pagamento_historico` | Só existem dentro do dono; a FK do dono faz parte da identificação e apaga em cascata |
+| Atributos compostos (endereço, dados bancários, transação...) | Uma coluna para cada parte | Atributo composto se achata nas colunas simples |
 
 ### DER completo
 
@@ -721,6 +746,14 @@ Em cada domínio: o recorte do DER, as regras de negócio que o modelo garante e
 
 <p align="center"><img src="difeecult-readme-arquivos/modelagem/der-catalogo.png" alt="DER do domínio Catálogo e estoque" width="100%"></p>
 
+<details>
+<summary><b>MER conceitual (Chen) deste domínio, com todos os atributos</b></summary>
+<br>
+<p align="center"><a href="difeecult-readme-arquivos/mer/mer-catalogo.png"><img src="difeecult-readme-arquivos/mer/mer-catalogo.png" alt="MER em notação de Chen do domínio Catálogo e estoque" width="100%"></a></p>
+<sub>Entidades em cinza pertencem a outros domínios e aparecem só para mostrar a ligação. <a href="difeecult-readme-arquivos/mer/mer-catalogo.svg">Versão SVG</a>.</sub>
+</details>
+
+
 - **Modelo × variação.** `modelos` guarda o que é comum (nome, categoria, preço, foto). Cada combinação de cor e tamanho vira uma linha em `produtos`, com estoque próprio. O UNIQUE composto `(modelo_id, cor, tamanho)` impede que a mesma peça fique dividida em duas linhas.
 - **Peça única.** Um produto com `modelo_id` vazio é uma peça avulsa (ex.: um aromatizante ou uma peça de brechó). A regra de variação única não se aplica a ela.
 - **Listas controladas.** `cor` e `categoria_produto` têm nome UNIQUE. Renomear uma categoria atualiza modelos e produtos em cascata (`ON UPDATE CASCADE`).
@@ -805,6 +838,14 @@ erDiagram
 ### 7.2 Vendas e pagamentos
 
 <p align="center"><img src="difeecult-readme-arquivos/modelagem/der-vendas.png" alt="DER do domínio Vendas e pagamentos" width="100%"></p>
+
+<details>
+<summary><b>MER conceitual (Chen) deste domínio, com todos os atributos</b></summary>
+<br>
+<p align="center"><a href="difeecult-readme-arquivos/mer/mer-vendas.png"><img src="difeecult-readme-arquivos/mer/mer-vendas.png" alt="MER em notação de Chen do domínio Vendas e pagamentos" width="100%"></a></p>
+<sub>Entidades em cinza pertencem a outros domínios e aparecem só para mostrar a ligação. <a href="difeecult-readme-arquivos/mer/mer-vendas.svg">Versão SVG</a>.</sub>
+</details>
+
 
 - **Venda com detalhe.** `vendas` é o cabeçalho (total, desconto, vendedor, evento, CPF na nota) e `venda_item` guarda cada produto com a quantidade e o preço do momento. Se o preço mudar depois, a venda antiga continua certa.
 - **Brinde.** Um item do tipo BRINDE tem preço 0 e quantidade 1 (CHECK). A coluna `brinde_venda_id` com UNIQUE garante no máximo um brinde por venda.
@@ -947,6 +988,14 @@ erDiagram
 
 <p align="center"><img src="difeecult-readme-arquivos/modelagem/der-eventos.png" alt="DER do domínio Eventos" width="100%"></p>
 
+<details>
+<summary><b>MER conceitual (Chen) deste domínio, com todos os atributos</b></summary>
+<br>
+<p align="center"><a href="difeecult-readme-arquivos/mer/mer-eventos.png"><img src="difeecult-readme-arquivos/mer/mer-eventos.png" alt="MER em notação de Chen do domínio Eventos" width="100%"></a></p>
+<sub>Entidades em cinza pertencem a outros domínios e aparecem só para mostrar a ligação. <a href="difeecult-readme-arquivos/mer/mer-eventos.svg">Versão SVG</a>.</sub>
+</details>
+
+
 - **Cada evento com a sua conta.** `vendas`, `movimentacao_estoque` e `vendas_canceladas` têm `evento_id`. Assim o relatório mostra o que foi levado, o que vendeu e quanto entrou em cada evento.
 - **Eventos que se repetem.** `eventos_anuais` guarda o mês e o dia; o sistema gera a edição de cada ano em `eventos`. O UNIQUE `(anual_id, ano_ocorrencia)` impede gerar o mesmo ano duas vezes.
 - **Tipos editáveis.** `tipo_evento` tem chave interna fixa e nome exibido, os dois únicos, e a cor do calendário. Renomear não quebra os eventos, porque eles apontam para a chave.
@@ -1010,6 +1059,14 @@ erDiagram
 
 <p align="center"><img src="difeecult-readme-arquivos/modelagem/der-preco.png" alt="DER do domínio Preço & custo" width="100%"></p>
 
+<details>
+<summary><b>MER conceitual (Chen) deste domínio, com todos os atributos</b></summary>
+<br>
+<p align="center"><a href="difeecult-readme-arquivos/mer/mer-preco.png"><img src="difeecult-readme-arquivos/mer/mer-preco.png" alt="MER em notação de Chen do domínio Preço & custo" width="100%"></a></p>
+<sub>Entidades em cinza pertencem a outros domínios e aparecem só para mostrar a ligação. <a href="difeecult-readme-arquivos/mer/mer-preco.svg">Versão SVG</a>.</sub>
+</details>
+
+
 - **Relação 1:1 opcional.** Uma ficha pertence a um modelo **ou** a uma peça única. O CHECK `(modelo_id IS NULL) <> (produto_id IS NULL)` exige exatamente um dos dois, e os dois são UNIQUE: cada produto tem no máximo uma ficha.
 - **Custo por etapa.** `ficha_custo_item` guarda tecido, corte, costura, estampa, etiqueta... O custo por peça é `quantidade × valor ÷ rendimento`: 1 kg de malha a R$ 62 que rende 3,5 camisetas custa R$ 17,71 por camiseta.
 - **Preço pelo markup divisor.** Os percentuais (imposto, taxa, comissão, despesas, lucro) saem do preço de venda, então `preço = custo ÷ (1 − soma dos %)`. Percentual vazio na ficha usa o padrão da loja (`parametros`).
@@ -1064,6 +1121,14 @@ erDiagram
 ### 7.5 Fornecedores e financeiro
 
 <p align="center"><img src="difeecult-readme-arquivos/modelagem/der-financeiro.png" alt="DER do domínio Fornecedores e financeiro" width="100%"></p>
+
+<details>
+<summary><b>MER conceitual (Chen) deste domínio, com todos os atributos</b></summary>
+<br>
+<p align="center"><a href="difeecult-readme-arquivos/mer/mer-financeiro.png"><img src="difeecult-readme-arquivos/mer/mer-financeiro.png" alt="MER em notação de Chen do domínio Fornecedores e financeiro" width="100%"></a></p>
+<sub>Entidades em cinza pertencem a outros domínios e aparecem só para mostrar a ligação. <a href="difeecult-readme-arquivos/mer/mer-financeiro.svg">Versão SVG</a>.</sub>
+</details>
+
 
 - **Atributos multivalorados.** Um fornecedor tem vários telefones e e-mails: eles ficam em tabelas próprias com chave primária composta (1FN). Telefone e e-mail não se repetem entre fornecedores (UNIQUE).
 - **Dívida fixa vira conta todo mês.** `contas_fixas` gera uma conta por competência. O UNIQUE `(conta_fixa_id, competencia)` impede gerar o mesmo mês duas vezes.
@@ -1155,6 +1220,14 @@ erDiagram
 ### 7.6 Pessoas e folha
 
 <p align="center"><img src="difeecult-readme-arquivos/modelagem/der-pessoas.png" alt="DER do domínio Pessoas e folha" width="100%"></p>
+
+<details>
+<summary><b>MER conceitual (Chen) deste domínio, com todos os atributos</b></summary>
+<br>
+<p align="center"><a href="difeecult-readme-arquivos/mer/mer-pessoas.png"><img src="difeecult-readme-arquivos/mer/mer-pessoas.png" alt="MER em notação de Chen do domínio Pessoas e folha" width="100%"></a></p>
+<sub>Entidades em cinza pertencem a outros domínios e aparecem só para mostrar a ligação. <a href="difeecult-readme-arquivos/mer/mer-pessoas.svg">Versão SVG</a>.</sub>
+</details>
+
 
 - **CLT ou PJ na mesma tabela.** `funcionario` tem `tipo_vinculo` e os campos de cada regime (PIS e CTPS para CLT; CNPJ e retenções para PJ). CPF e CNPJ são UNIQUE.
 - **Holerite vira conta a pagar.** `holerite` guarda os lançamentos do mês e o cálculo (INSS, IRRF, FGTS, VT...). Ao gerar, cria a conta em `contas` (`holerite.conta_id`). O UNIQUE `(funcionario_id, competencia)` permite um holerite por mês.
@@ -1281,6 +1354,14 @@ erDiagram
 ### 7.7 Acesso e sistema
 
 <p align="center"><img src="difeecult-readme-arquivos/modelagem/der-acesso.png" alt="DER do domínio Acesso e sistema" width="100%"></p>
+
+<details>
+<summary><b>MER conceitual (Chen) deste domínio, com todos os atributos</b></summary>
+<br>
+<p align="center"><a href="difeecult-readme-arquivos/mer/mer-acesso.png"><img src="difeecult-readme-arquivos/mer/mer-acesso.png" alt="MER em notação de Chen do domínio Acesso e sistema" width="100%"></a></p>
+<sub>Entidades em cinza pertencem a outros domínios e aparecem só para mostrar a ligação. <a href="difeecult-readme-arquivos/mer/mer-acesso.svg">Versão SVG</a>.</sub>
+</details>
+
 
 - **Permissão por tela.** `usuario_permissao` tem chave composta `(usuario_id, tela)` e diz se o usuário só vê ou também edita. Assim o vendedor usa o PDV sem ver custos e margens.
 - **Auditoria.** `log_atividade` registra vendas, brindes, cancelamentos, cadastros e trocas de preço. O nome do usuário é copiado no momento da ação, para o histórico não mudar se a pessoa for renomeada.
