@@ -2,7 +2,7 @@
 // O servidor do ERP (server.js) roda aqui dentro do navegador, com o SQLite em
 // JavaScript (sql.js). As chamadas a /api não saem da página: são atendidas pelo
 // mesmo código do servidor de verdade. O banco fica salvo no localStorage deste
-// navegador; cada pessoa que abrir a página tem a própria cópia.
+// navegador; cada pessoa que abrir a página tem a própria cópia...
 (function () {
   'use strict';
   const VERSAO = window.DEMO_VERSAO || 'v1';
